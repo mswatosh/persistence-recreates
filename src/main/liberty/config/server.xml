@@ -34,8 +34,17 @@
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
 
+    <library id="PostgresLib">
+		<fileset dir="${server.config.dir}/lib/postgres" includes="*.jar"/>
+	</library>
+
+	<dataSource id="DefaultDataSource" jndiName="jdbc/postgres">
+		<jdbcDriver libraryRef="PostgresLib"/>
+		<properties.postgresql databaseName="postgres" serverName="localhost" portNumber="5432" user="postgres" password="password"/>
+	</dataSource>
+
     <!-- Configures the application on a specified context root -->
-    <webApplication contextRoot="/persistence-recreates" location="persistence-recreates.war" />
+    <webApplication contextRoot="/" location="persistence-recreates.war" />
 
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />

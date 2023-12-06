@@ -8,7 +8,7 @@ public class Ship {
         small, large
     }
 
-    public String shipName;
+    public String name;
 
     public Size size;
 
@@ -17,7 +17,7 @@ public class Ship {
     }
 
     Ship(String name, Size size) {
-        this.shipName = name;
+        this.name = name;
         this.size = size;
     }
 

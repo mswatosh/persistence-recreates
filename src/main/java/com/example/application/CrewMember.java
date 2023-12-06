@@ -10,8 +10,6 @@ public class CrewMember {
 
 	public String name;
 
-	public String rank;
-
 	@Id
 	public int crewID; 
 
