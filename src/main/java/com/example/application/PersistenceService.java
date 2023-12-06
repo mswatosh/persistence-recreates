@@ -36,4 +36,27 @@ public class PersistenceService {
 
         return "SUCCESS";
     }
+
+    @GET
+    @Path("/findOrDeleteBeforePersist")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
+    public String findOrDeleteBeforePersist() {
+        
+        Ship s = new Ship();
+        s.name = "Liberty Saucer";
+        s.size = Ship.Size.small;
+
+        CrewMember cm = new CrewMember();       
+        cm.name = "test";
+        cm.crewID = 1231;
+        cm.ship = s;
+
+        em.find(CrewMember.class, 1231);
+
+        em.remove(cm);
+
+
+        return "SUCCESS";
+    }
 }
