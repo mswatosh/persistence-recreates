@@ -29,7 +29,7 @@ public class PersistenceService {
         CrewMember cm = new CrewMember();       
         cm.name = "test";
         cm.crewID = 1231;
-        cm.ship = s;
+
 
         em.persist(cm);
 
@@ -37,26 +37,50 @@ public class PersistenceService {
         return "SUCCESS";
     }
 
+
+    /*
+     * Test a finding or removing an entity when one hasn't been persisted.
+     */
     @GET
     @Path("/findOrDeleteBeforePersist")
     @Produces(MediaType.TEXT_PLAIN)
     @Transactional
     public String findOrDeleteBeforePersist() {
         
-        Ship s = new Ship();
-        s.name = "Liberty Saucer";
-        s.size = Ship.Size.small;
-
-        CrewMember cm = new CrewMember();       
+        FODCrewMember cm = new FODCrewMember();       
         cm.name = "test";
-        cm.crewID = 1231;
-        cm.ship = s;
+        cm.crewID = 74566;
 
-        em.find(CrewMember.class, 1231);
+        em.createQuery("SELECT c FROM CrewMember c ORDER BY c.name", CrewMember.class).getResultList();
+
+        em.find(CrewMember.class, 74566);
 
         em.remove(cm);
 
 
         return "SUCCESS";
     }
+
+
+    @GET
+    @Path("/modifyEntity")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
+    public String modifyEntity() {
+        /* 
+        To test this, run it once, and then manually modify the
+        type of name to Rank in SimpleCrewMember
+        
+        crewID will need to be changed to a different int
+        */
+
+        SimpleCrewMember cm = new SimpleCrewMember();       
+        cm.name = "test"; //Rank.Captain;
+        cm.crewID = 1223;
+
+        em.persist(cm);
+
+        return "SUCCESS";
+    }
+
 }

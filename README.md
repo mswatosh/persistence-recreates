@@ -48,3 +48,12 @@ Internal Exception: org.postgresql.util.PSQLException: ERROR: column "name" spec
 [INFO]  at org.jboss.resteasy.core.MethodInjectorImpl.invoke(MethodInjectorImpl.java:170)
 [INFO]  at [internal classes]
 ```
+
+### /findOrDeleteBeforePersist
+
+Appears to work outside of Jakarta Data
+
+
+### /modifyEntity
+
+Appears to work outside of Jakarta Data
