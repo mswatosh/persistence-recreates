@@ -24,9 +24,15 @@
 		<fileset dir="${server.config.dir}/lib/postgres" includes="*.jar"/>
 	</library>
 
+    <library id="JCCLib">
+		<fileset dir="${server.config.dir}/lib/jcc" includes="*.jar"/>
+	</library>
+
 	<dataSource id="DefaultDataSource" jndiName="jdbc/postgres">
 		<jdbcDriver libraryRef="PostgresLib"/>
 		<properties.postgresql databaseName="postgres" serverName="localhost" portNumber="5432" user="postgres" password="password"/>
+        <!--<jdbcDriver libraryRef="JCCLib"/>
+		<properties.db2.jcc databaseName="testdb" serverName="localhost" portNumber="50000" user="db2inst1" password="password"/>-->
 	</dataSource>
 
     <library id="HibernateLib">
@@ -39,4 +45,6 @@
     <webApplication contextRoot="/" location="persistence-recreates.war" >
         <classloader commonLibraryRef="HibernateLib"/>
     </webApplication>
+
+    <!--<logging traceSpecification="*=info:eclipselink=all"/>-->
 </server>

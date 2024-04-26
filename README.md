@@ -7,6 +7,13 @@ Password: password
 DB: postgres  
 `docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=password postgres:16.1`
 
+## (Optional) Db2
+Switch server.xml to jcc driver for DefaultDataSource (Not working on Apple Silicon)
+User: db2inst1  
+Password: password  
+DB: testdb  
+`docker run -itd --privileged=true -p 50000:50000 -e LICENSE=accept -e DB2INST1_PASSWORD=password -e DBNAME=testdb db2:11.5.8.0`
+
 ## Run Liberty
 `mvn liberty:dev`
 
@@ -57,3 +64,7 @@ Appears to work outside of Jakarta Data
 ### /modifyEntity
 
 Appears to work outside of Jakarta Data
+
+### /listOrder
+
+On Db2 + EclipseLink this doesn't always return the correct order. Seems to work fine with Postgres and Db2 + Hibernate

@@ -84,6 +84,15 @@
                         </dependencyGroup>
                         <dependencyGroup>
                             <!-- Relative to server config directory -->
+                            <location>lib/jcc</location>
+                            <dependency>
+                                <groupId>com.ibm.db2.jcc</groupId>
+                                <artifactId>db2jcc</artifactId>
+                                <version>db2jcc4</version>
+                            </dependency>                            
+                        </dependencyGroup>
+                        <dependencyGroup>
+                            <!-- Relative to server config directory -->
                             <location>lib/hibernate</location>
                             <dependency>
                                 <groupId>org.hibernate.orm</groupId>

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class CrewMember {
 
-	public String name;
+	//public String name;
 
 	@Id
 	public int crewID; 
