@@ -67,4 +67,6 @@ Appears to work outside of Jakarta Data
 
 ### /listOrder
 
+http://localhost:9080/db/crew/listOrder
+
 On Db2 + EclipseLink this doesn't always return the correct order. Seems to work fine with Postgres and Db2 + Hibernate
