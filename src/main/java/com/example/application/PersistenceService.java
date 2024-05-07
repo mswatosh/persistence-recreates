@@ -2,6 +2,7 @@ package com.example.application;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
@@ -92,9 +93,9 @@ public class PersistenceService {
     @Transactional
     public String listOrder() {
         
-        Package p1 = new Package(70071, 17.0f, 17.1f, 7.7f, "testFindAndDeleteReturnsObjects#70071");
-        Package p3 = new Package(70077, 77.0f, 17.7f, 7.7f, "testFindAndDeleteReturnsObjects#70077");
-        Package p4 = new Package(70007, 70.0f, 10.7f, 0.7f, "testFindAndDeleteReturnsObjects#70007");
+        Package p1 = new Package(70071, 17.0f, 17.1f, 7.7f, "Should be First");
+        Package p3 = new Package(70077, 77.0f, 17.7f, 7.7f, "Should be Second");
+        Package p4 = new Package(70007, 70.0f, 10.7f, 0.7f, "Should not be returned");
         
         
         em.persist(p1);
@@ -108,6 +109,27 @@ public class PersistenceService {
         em.remove(p4);
 
         return results.toString();
+
+    }
+
+    @GET
+    @Path("/uuid")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
+    public String uuid() {
+
+        PurchaseOrder p1 = new PurchaseOrder("Purchase Order");
+
+        
+        em.persist(p1);
+        em.flush();
+        UUID uuid = p1.id;
+        em.refresh(p1);
+        List<?> result = em.createQuery("SELECT p FROM PurchaseOrder p WHERE p.id=?1").setParameter(1, uuid).getResultList();
+        em.remove(p1);
+
+
+        return result.toString();
 
     }
 

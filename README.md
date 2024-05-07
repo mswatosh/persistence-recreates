@@ -8,11 +8,11 @@ DB: postgres
 `docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=password postgres:16.1`
 
 ## (Optional) Db2
-Switch server.xml to jcc driver for DefaultDataSource (Not working on Apple Silicon)
+Switch server.xml to jcc driver for DefaultDataSource (Not working on Apple Silicon)  
 User: db2inst1  
 Password: password  
 DB: testdb  
-`docker run -itd --privileged=true -p 50000:50000 -e LICENSE=accept -e DB2INST1_PASSWORD=password -e DBNAME=testdb db2:11.5.8.0`
+`docker run -itd --privileged=true --platform=linux/amd64 -p 50000:50000 -e LICENSE=accept -e DB2INST1_PASSWORD=password -e DBNAME=testdb  ibmcom/db2:11.5.8.0`
 
 ## Run Liberty
 `mvn liberty:dev`
@@ -70,3 +70,7 @@ Appears to work outside of Jakarta Data
 http://localhost:9080/db/crew/listOrder
 
 On Db2 + EclipseLink this doesn't always return the correct order. Seems to work fine with Postgres and Db2 + Hibernate
+
+### /uuid
+
+http://localhost:9080/db/crew/uuid
