@@ -74,3 +74,13 @@ On Db2 + EclipseLink this doesn't always return the correct order. Seems to work
 ### /uuid
 
 http://localhost:9080/db/crew/uuid
+
+On Postgres, the UUID is sent as a VARCHAR instead of a UUID, which is rejected.
+
+```java
+[INFO] Internal Exception: org.postgresql.util.PSQLException: ERROR: operator does not exist: character varying = uuid
+[INFO]   Hint: No operator matches the given name and argument types. You might need to add explicit type casts.
+[INFO]   Position: 50
+[INFO] Error Code: 0
+[INFO] Call: SELECT ID, PURCHASE FROM PURCHASEORDER WHERE (ID = ?)
+```
