@@ -84,3 +84,15 @@ On Postgres, the UUID is sent as a VARCHAR instead of a UUID, which is rejected.
 [INFO] Error Code: 0
 [INFO] Call: SELECT ID, PURCHASE FROM PURCHASEORDER WHERE (ID = ?)
 ```
+
+### /entityExists
+
+http://localhost:9080/db/crew/entityExists
+
+On Postgres, when inserting an Entity with the same Id, instead of `jakarta.persistence.EntityExistsException` we get `jakarta.persistence.PersistenceException`.
+
+```java
+jakarta.persistence.PersistenceException: Exception [EclipseLink-4002] (Eclipse Persistence Services - 4.0.2.v202306161219): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "packages6_pkey"
+  Detail: Key (id)=(70071) already exists.
+  ```

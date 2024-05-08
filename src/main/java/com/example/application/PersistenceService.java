@@ -133,4 +133,27 @@ public class PersistenceService {
 
     }
 
+
+    @GET
+    @Path("/entityExists")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
+    public String entityExists() {
+
+        Package p1 = new Package(70071, 17.0f, 17.1f, 7.7f, "Should be First");
+        Package p2 = new Package(70071, 18.0f, 17.1f, 7.7f, "Should be First");
+
+        em.persist(p1);
+        em.persist(p2);
+        em.flush();
+        em.refresh(p1);
+
+        em.remove(p1);
+        em.remove(p2);
+
+
+        return "SUCCESS";
+
+    }
+
 }
