@@ -156,4 +156,17 @@ public class PersistenceService {
 
     }
 
+
+    @GET
+    @Path("/validation")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
+    public String validation() {
+        ValidationEntity ve = new ValidationEntity(null, 6);
+
+        em.persist(ve);
+
+        return "SUCCESS";
+    }
+
 }

@@ -4,13 +4,16 @@
     <featureManager>
 		<feature>restfulWS-3.1</feature>
 		<feature>cdi-4.0</feature>
+        <feature>beanValidation-3.0</feature>
 
         <!-- Enable for EclipseLink JPA-->
-		<feature>persistence-3.1</feature>
+	    <feature>persistence-3.1</feature>
 
         <!-- Enable for Hibernate -->
-        <!--<feature>persistenceContainer-3.1</feature>-->
-        <!--<feature>bells-1.0</feature>-->
+        <!--
+        <feature>persistenceContainer-3.1</feature>
+        <feature>bells-1.0</feature>
+        -->
     </featureManager>
 
     <httpEndpoint id="defaultHttpEndpoint"
