@@ -93,20 +93,26 @@ public class PersistenceService {
     @Transactional
     public String listOrder() {
         
-        Package p1 = new Package(70071, 17.0f, 17.1f, 7.7f, "Should be First");
-        Package p3 = new Package(70077, 77.0f, 17.7f, 7.7f, "Should be Second");
+        Package p1 = new Package(70071, 17.0f, 17.1f, 7.7f, "Should be Second");
+        Package p3 = new Package(70077, 77.0f, 17.7f, 7.7f, "Should be Third");
         Package p4 = new Package(70007, 70.0f, 10.7f, 0.7f, "Should not be returned");
-        
+        Package p5 = new Package(70073, 77.0f, 17.7f, 7.8f, "Should be First");
+        Package p6 = new Package(70076, 104.0f, 17.7f, 7.7f, "Should be Fourth");
+
         
         em.persist(p1);
         em.persist(p3);
         em.persist(p4);
+        em.persist(p5);
+        em.persist(p6);
 
-        List<?> results = em.createQuery("SELECT o FROM Package o WHERE (o.height<?1) ORDER BY o.height DESC, o.length").setParameter(1,8.0).setMaxResults(2).getResultList();
+        List<?> results = em.createQuery("SELECT o FROM Package o WHERE (o.height<?1) ORDER BY o.height DESC, o.length").setParameter(1,8.0).setMaxResults(4).getResultList();
 
         em.remove(p1);
         em.remove(p3);
         em.remove(p4);
+        em.remove(p5);
+        em.remove(p6);
 
         return results.toString();
 
